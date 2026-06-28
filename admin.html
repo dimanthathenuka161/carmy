@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Portal | Ceylon Wheels Car Rental</title>
+    <!-- CSS and Fonts -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177V3.75A1.125 1.125 0 0 0 13.125 2.625H8.625A1.125 1.125 0 0 0 7.5 3.75v3.823m3.75 3h7.5m-15 0h2.25m3.75 0h.008v.008H12v-.008Z" />
+                </svg>
+                <span>Ceylon Wheels</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="fleet.html">Our Fleet</a>
+                <a href="booking.html">Book A Car</a>
+                <a href="about.html">About Us</a>
+                <div class="nav-actions">
+                    <a href="admin.html" class="active btn btn-outline" style="padding: 8px 18px; font-size: 14px;">Staff Portal</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Admin Panel Layout -->
+    <div class="admin-container">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar">
+            <div style="padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px;">
+                <h3 style="font-size: 14px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px;">Operations</h3>
+            </div>
+            
+            <div class="admin-menu-item active" data-target="pane-dashboard">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" />
+                </svg>
+                <span>Dashboard</span>
+            </div>
+
+            <div class="admin-menu-item" data-target="pane-bookings">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+                <span>Bookings Queue</span>
+            </div>
+
+            <div class="admin-menu-item" data-target="pane-fleet">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+                <span>Fleet Manager</span>
+            </div>
+
+            <div class="admin-menu-item" data-target="pane-reports">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <span>Revenue Reports</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-main">
+            
+            <!-- PANE 1: Dashboard Overview -->
+            <div class="admin-pane active" id="pane-dashboard">
+                <div style="margin-bottom: 30px;">
+                    <h2 style="font-size: 28px; margin-bottom: 6px;">Operations Dashboard</h2>
+                    <p style="color: var(--text-muted); font-size: 14px;">Ceylon Wheels metrics and overview for today.</p>
+                </div>
+
+                <!-- Metrics Row -->
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <span style="font-size: 24px;">💰</span>
+                        </div>
+                        <div class="metric-info">
+                            <p>Total Revenue</p>
+                            <h3 id="stat-revenue">Rs. 0</h3>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <span style="font-size: 24px;">📅</span>
+                        </div>
+                        <div class="metric-info">
+                            <p>Active Rentals</p>
+                            <h3 id="stat-active">0</h3>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <span style="font-size: 24px;">🚗</span>
+                        </div>
+                        <div class="metric-info">
+                            <p>Fleet Count</p>
+                            <h3 id="stat-fleet">0</h3>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <span style="font-size: 24px;">⌛</span>
+                        </div>
+                        <div class="metric-info">
+                            <p>Pending Approvals</p>
+                            <h3 id="stat-pending" style="color: var(--primary);">0</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Bookings Table -->
+                <div class="table-card">
+                    <div class="table-header-bar">
+                        <h3>Recent Rental Activity</h3>
+                        <button class="btn btn-outline" style="padding: 6px 14px; font-size: 13px;" id="dashboard-to-bookings-btn">Manage Bookings</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Customer</th>
+                                    <th>Vehicle</th>
+                                    <th>Dates</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-bookings-tbody">
+                                <!-- Loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANE 2: Bookings Queue -->
+            <div class="admin-pane" id="pane-bookings">
+                <div style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div>
+                        <h2 style="font-size: 28px; margin-bottom: 6px;">Manage Bookings</h2>
+                        <p style="color: var(--text-muted); font-size: 14px;">Approve pending rentals, track active rides, and cancel bookings.</p>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" class="form-input" id="booking-search-q" placeholder="Search by customer name..." style="width: 250px; background: white;">
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Customer Details</th>
+                                    <th>Vehicle & Services</th>
+                                    <th>Duration & Locations</th>
+                                    <th>Total (LKR)</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookings-queue-tbody">
+                                <!-- Loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANE 3: Fleet Manager -->
+            <div class="admin-pane" id="pane-fleet">
+                <div style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div>
+                        <h2 style="font-size: 28px; margin-bottom: 6px;">Fleet Registry</h2>
+                        <p style="color: var(--text-muted); font-size: 14px;">Monitor vehicle utilization, rates, and register new cars.</p>
+                    </div>
+                    <button class="btn btn-primary" id="add-vehicle-btn">Add New Vehicle</button>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Car Details</th>
+                                    <th>Category</th>
+                                    <th>Specs & Fuel</th>
+                                    <th>Daily Rate (LKR)</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="fleet-manager-tbody">
+                                <!-- Loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANE 4: Revenue Reports -->
+            <div class="admin-pane" id="pane-reports">
+                <div style="margin-bottom: 30px;">
+                    <h2 style="font-size: 28px; margin-bottom: 6px;">Revenue & Fleet Performance</h2>
+                    <p style="color: var(--text-muted); font-size: 14px;">Visualization of monthly revenue and fleet popularity indices.</p>
+                </div>
+
+                <div class="admin-charts-grid">
+                    <!-- Revenue chart (Interactive CSS bars) -->
+                    <div class="chart-card">
+                        <h3>Monthly Operations Revenue (LKR)</h3>
+                        <div class="bar-chart-container" id="revenue-chart-container">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Fleet Popularity list -->
+                    <div class="chart-card">
+                        <h3>Most Popular Rentals</h3>
+                        <div class="pie-chart-list" id="popularity-chart-list">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Add Vehicle Dialog Modal -->
+    <div class="modal" id="add-vehicle-modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3>Register Vehicle</h3>
+                <button class="modal-close" id="add-vehicle-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-vehicle-form">
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label for="car-name">Vehicle Name (Make & Model)</label>
+                        <input type="text" class="form-input" id="car-name" placeholder="Toyota Vitz" required>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="car-category">Category</label>
+                            <select class="form-input" id="car-category">
+                                <option value="Hatchback">Hatchback</option>
+                                <option value="Sedan">Sedan</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Van">Van</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="car-transmission">Transmission</label>
+                            <select class="form-input" id="car-transmission">
+                                <option value="Automatic">Automatic</option>
+                                <option value="Manual">Manual</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-grid" style="margin-top: 16px;">
+                        <div class="form-group">
+                            <label for="car-fuel">Fuel Type</label>
+                            <select class="form-input" id="car-fuel">
+                                <option value="Hybrid / Petrol">Hybrid / Petrol</option>
+                                <option value="Diesel">Diesel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="car-price">Price Per Day (LKR)</label>
+                            <input type="number" class="form-input" id="car-price" placeholder="8500" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid" style="margin-top: 16px;">
+                        <div class="form-group">
+                            <label for="car-passengers">Passengers Capacity</label>
+                            <input type="number" class="form-input" id="car-passengers" value="5" min="2" max="15">
+                        </div>
+                        <div class="form-group">
+                            <label for="car-engine">Engine Capacity (e.g. 1500cc)</label>
+                            <input type="text" class="form-input" id="car-engine" placeholder="1500cc" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 16px;">
+                        <label for="car-features">Vehicle Features (Comma separated)</label>
+                        <input type="text" class="form-input" id="car-features" placeholder="Air Conditioning, Backup Camera, Push Start">
+                    </div>
+
+                    <div class="form-group" style="margin-top: 16px;">
+                        <label for="car-image">Select Preset Image</label>
+                        <select class="form-input" id="car-image">
+                            <option value="assets/images/suzuki_wagonr.jpg">Suzuki Wagon R (Hatchback)</option>
+                            <option value="assets/images/toyota_aqua.jpg">Toyota Aqua (Hatchback)</option>
+                            <option value="assets/images/toyota_axio.jpg">Toyota Axio (Sedan)</option>
+                            <option value="assets/images/toyota_prius.jpg">Toyota Prius (Sedan)</option>
+                            <option value="assets/images/honda_vezel.jpg">Honda Vezel (SUV)</option>
+                            <option value="assets/images/toyota_kdh.jpg">Toyota KDH (Van)</option>
+                            <option value="assets/images/mitsubishi_montero.jpg">Mitsubishi Montero (Luxury SUV)</option>
+                            <option value="assets/images/toyota_landcruiser.jpg">Toyota Land Cruiser V8 (Elite SUV)</option>
+                        </select>
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end; margin-top: 30px; border-top: 1px solid var(--border); padding-top: 20px;">
+                        <button type="submit" class="btn btn-secondary">Register Vehicle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Car | Ceylon Wheels Car Rental</title>
+    <!-- CSS and Fonts -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177V3.75A1.125 1.125 0 0 0 13.125 2.625H8.625A1.125 1.125 0 0 0 7.5 3.75v3.823m3.75 3h7.5m-15 0h2.25m3.75 0h.008v.008H12v-.008Z" />
+                </svg>
+                <span>Ceylon Wheels</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="fleet.html">Our Fleet</a>
+                <a href="booking.html" class="active">Book A Car</a>
+                <a href="about.html">About Us</a>
+                <div class="nav-actions">
+                    <a href="admin.html" class="btn btn-outline" style="padding: 8px 18px; font-size: 14px;">Staff Portal</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Booking Content -->
+    <div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+        <!-- Vehicle Selection Warning (Hidden if vehicle is selected) -->
+        <div id="no-vehicle-selected-warning" style="display: none; text-align: center; padding: 60px 20px; background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius-lg); max-width: 600px; margin: 40px auto;">
+            <div style="font-size: 64px; margin-bottom: 24px;">🚗🔍</div>
+            <h2 style="margin-bottom: 12px;">No Vehicle Selected</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">To proceed with booking, please pick a vehicle from our fleet catalog first.</p>
+            <a href="fleet.html" class="btn btn-primary">Browse Vehicles</a>
+        </div>
+
+        <!-- Main Booking Flow Grid -->
+        <div class="booking-grid" id="main-booking-flow" style="display: none;">
+            
+            <!-- Wizard Panel -->
+            <div class="booking-card">
+                <!-- Progress Stepper -->
+                <div class="booking-steps-nav">
+                    <div class="booking-step-indicator active" id="indicator-step-1">
+                        <div class="step-num">1</div>
+                        <span class="step-title">Dates & Driver</span>
+                    </div>
+                    <div class="booking-step-indicator" id="indicator-step-2">
+                        <div class="step-num">2</div>
+                        <span class="step-title">Your Details</span>
+                    </div>
+                    <div class="booking-step-indicator" id="indicator-step-3">
+                        <div class="step-num">3</div>
+                        <span class="step-title">Payment</span>
+                    </div>
+                </div>
+
+                <!-- Form Wizard Step 1: Dates & Driver -->
+                <div class="booking-step-pane active" id="pane-step-1">
+                    <h3 style="margin-bottom: 24px; font-size: 20px;">1. Select Rental Dates & Services</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="booking-pickup">Pickup Location</label>
+                            <select class="form-input" id="booking-pickup">
+                                <option value="Colombo (CMB)">Colombo (Fort/Galle Face)</option>
+                                <option value="Katunayake Airport (BIA)">Bandaranaike Int. Airport (BIA)</option>
+                                <option value="Kandy">Kandy (Central Province)</option>
+                                <option value="Galle">Galle (Southern Province)</option>
+                                <option value="Negombo">Negombo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-dropoff">Dropoff Location</label>
+                            <select class="form-input" id="booking-dropoff">
+                                <option value="Colombo (CMB)">Colombo (Fort/Galle Face)</option>
+                                <option value="Katunayake Airport (BIA)">Bandaranaike Int. Airport (BIA)</option>
+                                <option value="Kandy">Kandy (Central Province)</option>
+                                <option value="Galle">Galle (Southern Province)</option>
+                                <option value="Negombo">Negombo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="booking-pickup-date">Pickup Date & Time</label>
+                            <div style="display: flex; gap: 10px;">
+                                <input type="date" class="form-input" id="booking-pickup-date" style="flex: 2;">
+                                <input type="time" class="form-input" id="booking-pickup-time" value="09:00" style="flex: 1;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-dropoff-date">Dropoff Date & Time</label>
+                            <div style="display: flex; gap: 10px;">
+                                <input type="date" class="form-input" id="booking-dropoff-date" style="flex: 2;">
+                                <input type="time" class="form-input" id="booking-dropoff-time" value="18:00" style="flex: 1;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin: 32px 0 16px; font-size: 16px;">Driver Options (Sri Lankan Standard)</h4>
+                    <div class="option-cards">
+                        <div class="option-card selected" id="driver-opt-self" data-value="self">
+                            <div class="option-card-title">Self-Drive</div>
+                            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Drive the car yourself. Requires a valid driving license + refundable security deposit.</p>
+                            <div class="option-card-price">Free (Standard)</div>
+                        </div>
+                        <div class="option-card" id="driver-opt-driver" data-value="driver">
+                            <div class="option-card-title">With Driver</div>
+                            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Hire an experienced local driver. Waives refundable security deposit liability.</p>
+                            <div class="option-card-price">+ Rs. 3,000 / day</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end; margin-top: 30px;">
+                        <button type="button" class="btn btn-primary" id="btn-next-1">Next Step</button>
+                    </div>
+                </div>
+
+                <!-- Form Wizard Step 2: Customer Details -->
+                <div class="booking-step-pane" id="pane-step-2">
+                    <h3 style="margin-bottom: 24px; font-size: 20px;">2. Enter Customer Information</h3>
+                    
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="cust-name">Full Name (Matches NIC / Passport)</label>
+                        <input type="text" class="form-input" id="cust-name" placeholder="Kamal Perera">
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="cust-email">Email Address</label>
+                            <input type="email" class="form-input" id="cust-email" placeholder="kamal.p@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="cust-phone">Mobile Phone (+94 / LKR Mobile)</label>
+                            <input type="tel" class="form-input" id="cust-phone" placeholder="+94 77 123 4567">
+                        </div>
+                    </div>
+
+                    <div class="form-grid" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label for="cust-nic">NIC (National Identity Card) / Passport</label>
+                            <input type="text" class="form-input" id="cust-nic" placeholder="1992284712V or N1234567">
+                        </div>
+                        <div class="form-group">
+                            <label for="cust-license">Driving License Number</label>
+                            <input type="text" class="form-input" id="cust-license" placeholder="B8274912 (Required for Self-Drive)">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 20px;">
+                        <button type="button" class="btn btn-outline" id="btn-back-2">Back</button>
+                        <button type="button" class="btn btn-primary" id="btn-next-2">Proceed to Payment</button>
+                    </div>
+                </div>
+
+                <!-- Form Wizard Step 3: Payment Gateway Simulation -->
+                <div class="booking-step-pane" id="pane-step-3">
+                    <h3 style="margin-bottom: 12px; font-size: 20px;">3. Simulated Payment Checkout</h3>
+                    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 24px;">Ceylon Wheels operates on a mock secure processing gateway. No real funds will be deducted.</p>
+                    
+                    <div style="background: var(--bg-sub); border: 1.5px solid var(--primary-light); border-radius: var(--radius-md); padding: 24px; margin-bottom: 30px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <span style="font-weight: 700; color: var(--primary);">Secure Card Checkout</span>
+                            <div style="display: flex; gap: 8px;">
+                                <span style="font-size: 12px; background: white; padding: 2px 6px; border: 1px solid #ddd; border-radius: 4px; font-weight: bold;">VISA</span>
+                                <span style="font-size: 12px; background: white; padding: 2px 6px; border: 1px solid #ddd; border-radius: 4px; font-weight: bold;">MC</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 16px;">
+                            <label for="pay-card-num">Card Number</label>
+                            <input type="text" class="form-input" id="pay-card-num" placeholder="4111 2222 3333 4444" style="background: white;">
+                        </div>
+
+                        <div class="form-grid" style="grid-template-columns: 2fr 1fr;">
+                            <div class="form-group">
+                                <label for="pay-card-expiry">Expiry Date</label>
+                                <input type="text" class="form-input" id="pay-card-expiry" placeholder="MM/YY" style="background: white;">
+                            </div>
+                            <div class="form-group">
+                                <label for="pay-card-cvv">CVV</label>
+                                <input type="password" class="form-input" id="pay-card-cvv" placeholder="123" style="background: white;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alternate payment options for Sri Lanka -->
+                    <div style="border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 24px;">📱</span>
+                            <div>
+                                <h4 style="font-size: 14px;">Pay with Mobile Wallet (eZ Cash / mCash)</h4>
+                                <p style="font-size: 11px; color: var(--text-muted);">Enter Dialog/Mobitel number in checkout to approve pin.</p>
+                            </div>
+                        </div>
+                        <input type="radio" name="payment-method" value="wallet" style="width: 20px; height: 20px; accent-color: var(--primary);">
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 20px;">
+                        <button type="button" class="btn btn-outline" id="btn-back-3">Back</button>
+                        <button type="button" class="btn btn-secondary" id="btn-pay-now">Pay <span id="btn-pay-amount">Rs. 0</span> Now</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sticky Booking Summary Sidebar -->
+            <div class="summary-panel">
+                <h3 style="font-size: 18px; margin-bottom: 20px;">Booking Summary</h3>
+                
+                <div class="summary-car" id="summary-car-details">
+                    <!-- Injected dynamically via JS -->
+                </div>
+
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Pickup Location</span>
+                        <span id="sum-pickup-loc" style="font-weight: 600;">Colombo</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Dropoff Location</span>
+                        <span id="sum-dropoff-loc" style="font-weight: 600;">Colombo</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Duration</span>
+                        <span id="sum-duration" style="font-weight: 600;">0 Days</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Driver Option</span>
+                        <span id="sum-driver" style="font-weight: 600;">Self-Drive</span>
+                    </div>
+                </div>
+
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Car Base Rent</span>
+                        <span id="sum-base-rent">Rs. 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Driver Charge</span>
+                        <span id="sum-driver-charge">Rs. 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>VAT Tax (8%)</span>
+                        <span id="sum-tax">Rs. 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Refundable Security Deposit</span>
+                        <span id="sum-deposit" style="color: var(--secondary-light); font-weight: 500;">Rs. 0</span>
+                    </div>
+                    
+                    <div class="summary-row total">
+                        <span>Total Price (LKR)</span>
+                        <span id="sum-total-price">Rs. 0</span>
+                    </div>
+                </div>
+
+                <div style="background: rgba(37,99,235,0.05); border-radius: var(--radius-sm); padding: 12px; margin-top: 16px; border-left: 3px solid var(--secondary); font-size: 12px; color: var(--text-muted);">
+                    💡 Waived deposit liability when you hire a driver!
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Success Modal (Fitted directly inside page body container) -->
+        <div id="booking-success-container" style="display: none; background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius-lg); max-width: 650px; margin: 40px auto; padding: 40px; box-shadow: var(--shadow-lg);">
+            <div class="success-card">
+                <div class="success-icon">✓</div>
+                <h2 style="font-size: 28px; margin-bottom: 12px;">Booking Placed Successfully!</h2>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">Thank you for booking with Ceylon Wheels. Your transaction has been approved and pending staff verification.</p>
+                
+                <div style="background: var(--bg-sub); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; text-align: left; margin-bottom: 40px;">
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 12px;">
+                        <span style="font-weight: 600;">Booking ID</span>
+                        <span id="suc-booking-id" style="font-weight: 800; color: var(--primary);">BK-1029</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+                        <span>Vehicle</span>
+                        <span id="suc-vehicle-name" style="font-weight: 600;">Toyota Prius</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+                        <span>Customer Name</span>
+                        <span id="suc-cust-name">Kamal Perera</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+                        <span>Dates</span>
+                        <span id="suc-dates">2026-07-01 to 2026-07-05</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-top: 1.5px dashed var(--border); padding-top: 12px; margin-top: 12px;">
+                        <span style="font-weight: 700;">Amount Paid</span>
+                        <span id="suc-total-price" style="font-weight: 800; color: var(--secondary); font-size: 18px;">Rs. 75,480</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 16px;">
+                    <a href="index.html" class="btn btn-outline">Back to Home</a>
+                    <button onclick="window.print()" class="btn btn-primary">Print Invoice</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <h3>Ceylon Wheels</h3>
+                <p>Sri Lanka's premier online car rental booking platform. Providing high-quality vehicles, transparent LKR pricing, and excellent local customer care.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="Twitter">TW</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="fleet.html">Our Fleet</a></li>
+                    <li><a href="booking.html">Book A Car</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Popular Vehicles</h4>
+                <ul>
+                    <li><a href="fleet.html?type=Hatchback">Suzuki Wagon R</a></li>
+                    <li><a href="fleet.html?type=Sedan">Toyota Axio / Prius</a></li>
+                    <li><a href="fleet.html?type=SUV">Honda Vezel</a></li>
+                    <li><a href="fleet.html?type=Van">Toyota KDH Van</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact Us</h4>
+                <p style="margin-bottom: 12px; color: #94a3b8;">📍 104/Mahindarama Road, Ethulkotte, Sri Lanka</p>
+                <p style="margin-bottom: 12px; color: #94a3b8;">📞 +94 11 234 5678</p>
+                <p style="color: #94a3b8;">📧 info@ceylonwheels.lk</p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Ceylon Wheels Car Rental. All rights reserved.</p>
+            <p><a href="privacy.html" style="text-decoration: underline; color: inherit; transition: var(--transition);">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/booking.js"></script>
+</body>
+</html>
